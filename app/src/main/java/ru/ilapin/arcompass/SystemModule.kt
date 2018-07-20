@@ -5,7 +5,6 @@ import android.hardware.Sensor
 import android.hardware.SensorManager
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 
 /**
  * @author ilapin on 20.07.18.
@@ -20,12 +19,12 @@ class SystemModule(private val context: Context) {
     fun provideSensorManager() = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
     @Provides
-    @Named("Accelerometer")
-    fun provideAccelerometer(sensorManager: SensorManager) =
+    //@Named("Accelerometer")
+    fun provideAccelerometer(sensorManager: SensorManager): Sensor? =
             sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
-    @Provides
+    /*@Provides
     @Named("MagneticField")
-    fun provideMagneticField(sensorManager: SensorManager) =
-            sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+    fun provideMagneticField(sensorManager: SensorManager): Sensor? =
+            sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)*/
 }
