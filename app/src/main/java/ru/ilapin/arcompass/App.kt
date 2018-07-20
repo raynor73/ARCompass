@@ -12,7 +12,8 @@ class App : MultiDexApplication() {
         private lateinit var appComponent_: AppComponent
 
         @JvmStatic
-        val appComponent = appComponent_
+        val appComponent
+            get() = appComponent_
     }
 
     override fun onCreate() {

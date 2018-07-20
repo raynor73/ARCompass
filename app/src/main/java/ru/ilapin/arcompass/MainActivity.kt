@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
 import javax.inject.Inject
+import javax.inject.Named
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
@@ -15,12 +16,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     lateinit var sensorManager: SensorManager
 
     @Inject
-    //@Named("Accelerometer")
+    @field:Named("Accelerometer")
     @JvmField
     var accelerometer: Sensor? = null
 
     @Inject
-    //@Named("MagneticField")
+    @field:Named("MagneticField")
     @JvmField
     var magneticField: Sensor? = null
 
