@@ -5,7 +5,8 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import ru.ilapin.common.math.Vector3f
+import android.opengl.Matrix
+import ru.ilapin.common.math.Vector4f
 
 class CompassController(
         private val context: Context,
@@ -15,16 +16,15 @@ class CompassController(
         private val magneticField: Sensor?
 ) {
 
-    private val idleVector = Vector3f(0.0f, 100.0f, 0.0f)
-    private val transformedVector = Vector3f()
+    private val idleVector = Vector4f(0.0f, 100.0f, 0.0f)
+    private val transformedVector = Vector4f()
 
     private var isAccelerometerReadingsAvailable = false
     private val accelerometerReading = FloatArray(3)
     private var isMagnetometerReadingsAvailable = false
     private val magnetometerReading = FloatArray(3)
 
-    private val rotationMatrix = FloatArray(9)
-    private val orientationAngles = FloatArray(3)
+    private val rotationMatrix = FloatArray(16)
 
     private val sensorListener = object : SensorEventListener {
 
@@ -94,7 +94,8 @@ class CompassController(
     private fun redrawVector() {
         if (isAccelerometerReadingsAvailable && isMagnetometerReadingsAvailable) {
             SensorManager.getRotationMatrix(rotationMatrix, null, accelerometerReading, magnetometerReading)
-            SensorManager.getOrientation(rotationMatrix, orientationAngles)
+
+            Matrix.multiplyMV(transformedVector.values, 0, rotationMatrix, 0, idleVector.values, 0);
 
             presenter.drawVector(transformedVector)
         }

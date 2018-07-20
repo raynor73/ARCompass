@@ -6,13 +6,13 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import ru.ilapin.common.math.Vector3f
+import ru.ilapin.common.math.Vector4f
 
 class OrientationView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : View(context, attrs, defStyleAttr) {
 
     private val arrowPaint = Paint()
 
-    val vector = Vector3f()
+    val vector = Vector4f()
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 

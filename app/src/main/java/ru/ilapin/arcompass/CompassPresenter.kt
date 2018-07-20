@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
-import ru.ilapin.common.math.Vector3f
+import ru.ilapin.common.math.Vector4f
 
 class CompassPresenter(rootView: View) {
 
@@ -33,7 +33,7 @@ class CompassPresenter(rootView: View) {
         orientationView.visibility = View.VISIBLE
     }
 
-    fun drawVector(vector: Vector3f) {
+    fun drawVector(vector: Vector4f) {
         System.arraycopy(vector.values, 0, orientationView.vector.values, 0, vector.values.size)
         orientationView.invalidate()
     }
