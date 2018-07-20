@@ -10,5 +10,5 @@ import javax.inject.Singleton
 @Component(modules = [SystemModule::class])
 interface AppComponent {
 
-    fun inject(activity: MainActivity)
+    fun compassComponent(compassModule: CompassModule): CompassComponent
 }
