@@ -8,8 +8,14 @@ import ru.ilapin.common.math.Vector4f
 
 class CompassPresenter(rootView: View) {
 
-    @BindView(R.id.error_message)
-    lateinit var errorView: TextView
+    @BindView(R.id.error_messages_container)
+    lateinit var errorMessagesContainer: View
+
+    @BindView(R.id.accelerometer_error_message)
+    lateinit var accelerometerErrorView: TextView
+
+    @BindView(R.id.magnetic_field_error_message)
+    lateinit var magneticFieldErrorView: TextView
 
     @BindView(R.id.orientation_view)
     lateinit var orientationView: OrientationView
@@ -18,15 +24,19 @@ class CompassPresenter(rootView: View) {
         ButterKnife.bind(this, rootView)
     }
 
-    fun showError(errorMessage: String) {
-        errorView.visibility = View.VISIBLE
-        errorView.text = errorMessage
+    fun showError(accelerometerError: String?, magneticFieldError: String?) {
+        accelerometerErrorView.text = accelerometerError
+        magneticFieldErrorView.text = magneticFieldError
 
+        accelerometerErrorView.visibility = if (accelerometerError != null) View.VISIBLE else View.GONE
+        magneticFieldErrorView.visibility = if (magneticFieldError != null) View.VISIBLE else View.GONE
+
+        errorMessagesContainer.visibility = View.VISIBLE
         orientationView.visibility = View.GONE
     }
 
-    fun showOrientation() {
-        errorView.visibility = View.GONE
+    fun showReadings() {
+        errorMessagesContainer.visibility = View.GONE
         orientationView.visibility = View.VISIBLE
     }
 

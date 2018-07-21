@@ -14,20 +14,4 @@ class SystemModule(private val context: Context) {
     @Provides
     @Singleton
     fun provideContext() = context
-
-    /*@Provides
-    @Singleton
-    fun provideSensorManager() = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-
-    @Provides
-    @Singleton
-    @Named("Accelerometer")
-    fun provideAccelerometer(sensorManager: SensorManager): Sensor? =
-            sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-
-    @Provides
-    @Singleton
-    @Named("MagneticField")
-    fun provideMagneticField(sensorManager: SensorManager): Sensor? =
-            sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)*/
 }

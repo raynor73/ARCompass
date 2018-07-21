@@ -13,12 +13,26 @@
             android:layout_height="200dp"
             android:layout_gravity="center" />
 
-    <TextView
-            android:id="@+id/error_message"
+    <LinearLayout
+            android:id="@+id/error_messages_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            tools:text="Один из сенсоров не доступен" />
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/accelerometer_error_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Ошибка акселерометра" />
+
+        <TextView
+                android:id="@+id/magnetic_field_error_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Ошибка датчика магнитного поля" />
+
+    </LinearLayout>
 
     <Button
             android:id="@+id/camera_button"
