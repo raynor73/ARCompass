@@ -1,4 +1,4 @@
-package ru.ilapin.arcompass
+package ru.ilapin.arcompass.widgets
 
 import android.content.Context
 import android.graphics.Canvas

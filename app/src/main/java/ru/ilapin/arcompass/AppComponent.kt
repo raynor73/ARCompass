@@ -1,20 +1,23 @@
 package ru.ilapin.arcompass
 
 import dagger.Component
-import ru.ilapin.arcompass.camerascreen.CameraComponent
-import ru.ilapin.arcompass.camerascreen.CameraModule
+import ru.ilapin.arcompass.camerascreen.CameraPreviewComponent
+import ru.ilapin.arcompass.camerascreen.CameraPreviewModule
+import ru.ilapin.arcompass.compassscreen.CompassScreenComponent
+import ru.ilapin.arcompass.compassscreen.CompassScreenModule
 import javax.inject.Singleton
 
 /**
  * @author ilapin on 20.07.18.
  */
 @Singleton
-@Component(modules = [SystemModule::class, SensorsModule::class, CameraModule::class])
+@Component(modules = [SystemModule::class, SensorsModule::class])
 interface AppComponent {
 
-    fun compassComponent(compassModule: CompassModule): CompassComponent
+    fun compassScreenComponent(compassScreenModule: CompassScreenModule): CompassScreenComponent
 
-    fun permissionsComponent(permissionsModule: PermissionsModule): PermissionsComponent
-
-    fun cameraComponent(): CameraComponent
+    fun cameraPreviewComponent(
+            cameraPreviewModule: CameraPreviewModule,
+            permissionsModule: PermissionsModule
+    ): CameraPreviewComponent
 }

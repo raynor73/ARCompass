@@ -1,12 +1,14 @@
-package ru.ilapin.arcompass
+package ru.ilapin.arcompass.compassscreen
 
 import android.view.View
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import ru.ilapin.arcompass.R
+import ru.ilapin.arcompass.widgets.OrientationView
 import ru.ilapin.common.math.Vector4f
 
-class CompassPresenter(rootView: View) {
+class CompassScreenPresenter(rootView: View) {
 
     @BindView(R.id.error_messages_container)
     lateinit var errorMessagesContainer: View

@@ -1,4 +1,4 @@
-package ru.ilapin.arcompass
+package ru.ilapin.arcompass.compassscreen
 
 import android.content.Context
 import android.hardware.SensorManager
@@ -8,13 +8,14 @@ import io.reactivex.Flowable
 import io.reactivex.Notification
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiFunction
+import ru.ilapin.arcompass.R
 import ru.ilapin.common.math.Vector4f
 
 typealias CombinedSensorEvents = BiFunction<Notification<ReactiveSensorEvent>, Notification<ReactiveSensorEvent>, Pair<Notification<ReactiveSensorEvent>, Notification<ReactiveSensorEvent>>>
 
 class CompassController(
         private val context: Context,
-        private val presenter: CompassPresenter,
+        private val presenter: CompassScreenPresenter,
         private val accelerometer: Flowable<ReactiveSensorEvent>,
         private val magneticField: Flowable<ReactiveSensorEvent>
 ) {

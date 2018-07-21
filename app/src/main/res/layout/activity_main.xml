@@ -5,9 +5,9 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".compassscreen.MainActivity">
 
-    <ru.ilapin.arcompass.OrientationView
+    <ru.ilapin.arcompass.widgets.OrientationView
             android:id="@+id/orientation_view"
             android:layout_width="200dp"
             android:layout_height="200dp"

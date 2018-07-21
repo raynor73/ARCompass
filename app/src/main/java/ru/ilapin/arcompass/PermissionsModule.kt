@@ -10,5 +10,5 @@ class PermissionsModule(private val activity: AppCompatActivity) {
 
     @Provides
     @PerActivity
-    fun provideRxPermissions() = RxPermissions(activity)
+    fun provideRxPermissions(): RxPermissions = RxPermissions(activity)
 }
