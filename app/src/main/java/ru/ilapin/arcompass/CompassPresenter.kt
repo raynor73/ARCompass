@@ -16,9 +16,6 @@ class CompassPresenter(rootView: View) {
 
     init {
         ButterKnife.bind(this, rootView)
-
-        errorView.visibility = View.GONE
-        orientationView.visibility = View.GONE
     }
 
     fun showError(errorMessage: String) {

@@ -1,7 +1,9 @@
 package ru.ilapin.arcompass
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import butterknife.OnClick
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -23,5 +25,10 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         controller.stopSensorReadings()
+    }
+
+    @OnClick(R.id.camera_button)
+    fun onCameraButtonClick() {
+        startActivity(Intent(this, CameraActivity::class.java))
     }
 }

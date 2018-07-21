@@ -1,11 +1,11 @@
 package ru.ilapin.arcompass
 
 import android.content.Context
-import android.hardware.Sensor
-import android.hardware.SensorManager
 import android.view.View
+import com.github.pwittchen.reactivesensors.library.ReactiveSensorEvent
 import dagger.Module
 import dagger.Provides
+import io.reactivex.Flowable
 import javax.inject.Named
 
 @Module
@@ -22,8 +22,7 @@ class CompassModule(private val rootView: View) {
     fun provideController(
             context: Context,
             presenter: CompassPresenter,
-            sensorManager: SensorManager,
-            @Named("Accelerometer") accelerometer: Sensor?,
-            @Named("MagneticField") magneticField: Sensor?
-    ) = CompassController(context, presenter, sensorManager, accelerometer, magneticField)
+            @Named("Accelerometer") accelerometer: Flowable<ReactiveSensorEvent>,
+            @Named("MagneticField") magneticField: Flowable<ReactiveSensorEvent>
+    ) = CompassController(context, presenter, accelerometer, magneticField)
 }

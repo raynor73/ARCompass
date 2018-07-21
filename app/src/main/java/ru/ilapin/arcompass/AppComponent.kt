@@ -7,7 +7,7 @@ import javax.inject.Singleton
  * @author ilapin on 20.07.18.
  */
 @Singleton
-@Component(modules = [SystemModule::class])
+@Component(modules = [SystemModule::class, SensorsModule::class])
 interface AppComponent {
 
     fun compassComponent(compassModule: CompassModule): CompassComponent

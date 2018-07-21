@@ -1,11 +1,8 @@
 package ru.ilapin.arcompass
 
 import android.content.Context
-import android.hardware.Sensor
-import android.hardware.SensorManager
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -18,7 +15,7 @@ class SystemModule(private val context: Context) {
     @Singleton
     fun provideContext() = context
 
-    @Provides
+    /*@Provides
     @Singleton
     fun provideSensorManager() = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
@@ -32,5 +29,5 @@ class SystemModule(private val context: Context) {
     @Singleton
     @Named("MagneticField")
     fun provideMagneticField(sensorManager: SensorManager): Sensor? =
-            sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+            sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)*/
 }

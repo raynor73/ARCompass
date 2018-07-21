@@ -3,4 +3,5 @@
 
     <string name="no_accelerometer_error_message">No Accelerometer</string>
     <string name="no_magnetometer_error_message">No Magnetometer</string>
+    <string name="camera">Camera</string>
 </resources>
