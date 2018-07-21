@@ -2,6 +2,7 @@ package ru.ilapin.arcompass
 
 import android.content.Context
 import android.hardware.Sensor
+import android.hardware.SensorManager
 import com.github.pwittchen.reactivesensors.library.ReactiveSensorEvent
 import com.github.pwittchen.reactivesensors.library.ReactiveSensorFilter
 import com.github.pwittchen.reactivesensors.library.ReactiveSensors
@@ -21,7 +22,7 @@ class SensorsModule {
     @Named("Accelerometer")
     fun provideAccelerometer(context: Context): Flowable<ReactiveSensorEvent> =
             ReactiveSensors(context)
-                    .observeSensor(Sensor.TYPE_ACCELEROMETER)
+                    .observeSensor(Sensor.TYPE_ACCELEROMETER, SensorManager.SENSOR_DELAY_FASTEST)
                     .filter(ReactiveSensorFilter.filterSensorChanged())
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -31,7 +32,7 @@ class SensorsModule {
     @Named("MagneticField")
     fun provideMagneticField(context: Context): Flowable<ReactiveSensorEvent> =
             ReactiveSensors(context)
-                    .observeSensor(Sensor.TYPE_MAGNETIC_FIELD)
+                    .observeSensor(Sensor.TYPE_MAGNETIC_FIELD, SensorManager.SENSOR_DELAY_FASTEST)
                     .filter(ReactiveSensorFilter.filterSensorChanged())
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
