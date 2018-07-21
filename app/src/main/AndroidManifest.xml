@@ -3,6 +3,9 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="ru.ilapin.arcompass">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
     <application
             android:name=".App"
             android:allowBackup="false"
@@ -19,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".CameraActivity">
+        <activity android:name=".camerascreen.CameraActivity">
         </activity>
     </application>
 

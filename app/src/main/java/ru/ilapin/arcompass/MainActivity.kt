@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import butterknife.OnClick
+import ru.ilapin.arcompass.camerascreen.CameraActivity
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
