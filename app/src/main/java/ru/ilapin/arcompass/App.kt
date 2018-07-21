@@ -1,5 +1,6 @@
 package ru.ilapin.arcompass
 
+import android.os.StrictMode
 import android.support.multidex.MultiDexApplication
 
 /**
@@ -17,6 +18,16 @@ class App : MultiDexApplication() {
     }
 
     override fun onCreate() {
+        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build())
+
+        StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .build())
+
         super.onCreate()
 
         appComponent_ = DaggerAppComponent.builder().systemModule(SystemModule(this)).build()
