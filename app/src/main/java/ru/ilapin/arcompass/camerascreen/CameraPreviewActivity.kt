@@ -24,7 +24,9 @@ class CameraPreviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera_preview)
-        App.appComponent.cameraPreviewComponent(CameraPreviewModule(findViewById(R.id.container))).inject(this)
+        App.appComponent
+                .cameraPreviewComponent(CameraPreviewModule(findViewById(R.id.container), windowManager))
+                .inject(this)
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             isCameraPermissionGranted = true

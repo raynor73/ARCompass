@@ -37,6 +37,7 @@ class CameraPreviewPresenter(rootView: View) {
                 .last()
 
         cameraPreview = CameraPreview(containerView.context, camera)
+        cameraPreview?.layoutParams = ViewGroup.LayoutParams(0 ,0)
         containerView.addView(cameraPreview)
     }
 

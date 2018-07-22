@@ -2,12 +2,13 @@ package ru.ilapin.arcompass.camerascreen
 
 import android.content.Context
 import android.hardware.Camera
+import android.view.WindowManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ru.ilapin.arcompass.R
 
-class CameraPreviewController(private val context: Context, private val presenter: CameraPreviewPresenter) {
+class CameraPreviewController(private val context: Context, private val windowManager: WindowManager, private val presenter: CameraPreviewPresenter) {
 
     private var camera: Camera? = null
 
@@ -31,6 +32,8 @@ class CameraPreviewController(private val context: Context, private val presente
                 { openedCamera ->
                     camera = openedCamera
                     if (!isStopPreviewRequested) {
+                        val cameraInfo = Camera.CameraInfo()
+                        Camera.getCameraInfo()
                         presenter.startCameraPreview(openedCamera)
                     } else {
                         openedCamera.release()
