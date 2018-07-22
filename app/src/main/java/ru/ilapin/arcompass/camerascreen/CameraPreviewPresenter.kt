@@ -1,8 +1,10 @@
 package ru.ilapin.arcompass.camerascreen
 
 import android.hardware.Camera
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -28,16 +30,19 @@ class CameraPreviewPresenter(rootView: View) {
         errorMessageView.text = errorMessage
     }
 
-    fun startCameraPreview(camera: Camera) {
+    fun startCameraPreview(camera: Camera, displayOrientation: Int) {
         errorMessageView.visibility = View.GONE
 
         stopCameraPreview()
-        val previewSize = camera.parameters.supportedPreviewSizes
-                .sortedWith(Comparator<Camera.Size> { o1, o2 -> o1.width - o2.width })
-                .last()
 
-        cameraPreview = CameraPreview(containerView.context, camera)
-        cameraPreview?.layoutParams = ViewGroup.LayoutParams(0 ,0)
+        cameraPreview = CameraPreview(containerView.context, camera, displayOrientation)
+        val layoutParams = FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        layoutParams.gravity = Gravity.CENTER
+        cameraPreview?.layoutParams = layoutParams
+
         containerView.addView(cameraPreview)
     }
 

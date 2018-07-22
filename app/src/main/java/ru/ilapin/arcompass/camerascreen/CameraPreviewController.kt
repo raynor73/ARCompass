@@ -2,6 +2,7 @@ package ru.ilapin.arcompass.camerascreen
 
 import android.content.Context
 import android.hardware.Camera
+import android.view.Surface
 import android.view.WindowManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,10 +13,21 @@ class CameraPreviewController(private val context: Context, private val windowMa
 
     private var camera: Camera? = null
 
+    private var cameraId = -1
+
     private val cameraRetriever = Observable
             .create<Camera> { emitter ->
                 try {
-                    val camera = Camera.open() ?: throw NoCameraFound()
+                    val numberOfCameras = Camera.getNumberOfCameras()
+                    val cameraInfo = Camera.CameraInfo()
+                    for (i in 0 until numberOfCameras) {
+                        Camera.getCameraInfo(i, cameraInfo)
+                        if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                            cameraId = i
+                            break
+                        }
+                    }
+                    val camera = Camera.open(cameraId) ?: throw NoCameraFound()
                     emitter.onNext(camera)
                     emitter.onComplete()
                 } catch (e: Exception) {
@@ -33,8 +45,20 @@ class CameraPreviewController(private val context: Context, private val windowMa
                     camera = openedCamera
                     if (!isStopPreviewRequested) {
                         val cameraInfo = Camera.CameraInfo()
-                        Camera.getCameraInfo()
-                        presenter.startCameraPreview(openedCamera)
+                        Camera.getCameraInfo(cameraId, cameraInfo)
+
+                        val displayRotationDegrees = when (windowManager.defaultDisplay.rotation) {
+                            Surface.ROTATION_0 -> 0
+                            Surface.ROTATION_90 -> 90
+                            Surface.ROTATION_180 -> 180
+                            Surface.ROTATION_270 -> 270
+                            else -> throw IllegalStateException(
+                                    "Unknown display rotation: ${windowManager.defaultDisplay.rotation}"
+                            )
+                        }
+                        val displayOrientation = (cameraInfo.orientation - displayRotationDegrees + 360) % 360
+                        openedCamera.setDisplayOrientation(displayOrientation)
+                        presenter.startCameraPreview(openedCamera, displayOrientation)
                     } else {
                         openedCamera.release()
                     }
