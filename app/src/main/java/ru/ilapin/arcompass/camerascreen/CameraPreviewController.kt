@@ -16,8 +16,8 @@ import ru.ilapin.arcompass.R
 class CameraPreviewController(
         private val context: Context,
         private val presenter: CameraPreviewPresenter,
-        private val rxPermissions: RxPermissions,
-        private val lifecycleProvider: LifecycleProvider<Lifecycle.Event>
+        rxPermissions: RxPermissions,
+        lifecycleProvider: LifecycleProvider<Lifecycle.Event>
 ) {
 
     private var camera: Camera? = null
@@ -47,11 +47,10 @@ class CameraPreviewController(
                 BiFunction<Boolean, Lifecycle.Event, Pair<Boolean, Lifecycle.Event>> { p, e -> Pair(p, e) }
         ).subscribe { p ->
             if (p.first && p.second == Lifecycle.Event.ON_RESUME) {
-                releaseCamera()
                 cameraSubscription = cameraRetriever.subscribe(
                         { openedCamera ->
                             camera = openedCamera
-                            presenter.showCameraPreview()
+                            presenter.startCameraPreview(openedCamera)
                         },
                         { t ->
                             when (t) {
@@ -62,6 +61,7 @@ class CameraPreviewController(
                 )
             }
             if (p.second == Lifecycle.Event.ON_PAUSE) {
+                presenter.stopCameraPreview()
                 releaseCamera()
             }
         }

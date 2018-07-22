@@ -6,8 +6,12 @@ import ru.ilapin.arcompass.App
 import ru.ilapin.arcompass.LifecycleModule
 import ru.ilapin.arcompass.PermissionsModule
 import ru.ilapin.arcompass.R
+import javax.inject.Inject
 
 class CameraPreviewActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var controller: CameraPreviewController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
