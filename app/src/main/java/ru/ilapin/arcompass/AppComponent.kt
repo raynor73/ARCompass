@@ -18,6 +18,7 @@ interface AppComponent {
 
     fun cameraPreviewComponent(
             cameraPreviewModule: CameraPreviewModule,
-            permissionsModule: PermissionsModule
+            permissionsModule: PermissionsModule,
+            lifecycleModule: LifecycleModule
     ): CameraPreviewComponent
 }

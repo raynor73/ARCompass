@@ -4,4 +4,7 @@
     <string name="no_accelerometer_error_message">No Accelerometer</string>
     <string name="no_magnetometer_error_message">No Magnetometer</string>
     <string name="camera">Camera</string>
+    <string name="camera_permission_required">Camera permission required</string>
+    <string name="camera_not_found">Camera not found</string>
+    <string name="error_opening_camera">Error opening camera</string>
 </resources>
