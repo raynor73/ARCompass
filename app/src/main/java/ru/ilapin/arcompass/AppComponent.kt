@@ -16,9 +16,5 @@ interface AppComponent {
 
     fun compassScreenComponent(compassScreenModule: CompassScreenModule): CompassScreenComponent
 
-    fun cameraPreviewComponent(
-            cameraPreviewModule: CameraPreviewModule,
-            permissionsModule: PermissionsModule,
-            lifecycleModule: LifecycleModule
-    ): CameraPreviewComponent
+    fun cameraPreviewComponent(cameraPreviewModule: CameraPreviewModule): CameraPreviewComponent
 }

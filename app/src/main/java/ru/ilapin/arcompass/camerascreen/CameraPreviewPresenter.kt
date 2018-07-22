@@ -32,6 +32,10 @@ class CameraPreviewPresenter(rootView: View) {
         errorMessageView.visibility = View.GONE
 
         stopCameraPreview()
+        val previewSize = camera.parameters.supportedPreviewSizes
+                .sortedWith(Comparator<Camera.Size> { o1, o2 -> o1.width - o2.width })
+                .last()
+
         cameraPreview = CameraPreview(containerView.context, camera)
         containerView.addView(cameraPreview)
     }
